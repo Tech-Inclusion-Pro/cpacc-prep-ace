@@ -134,7 +134,7 @@ const ResultsPage: React.FC<ResultsPageProps> = ({ results, onRestart }) => {
         </Button>
       </div>
 
-      <style jsx global>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @media print {
           body {
             print-color-adjust: exact;
@@ -146,7 +146,7 @@ const ResultsPage: React.FC<ResultsPageProps> = ({ results, onRestart }) => {
             padding: 10px;
           }
         }
-      `}</style>
+      `}} />
     </div>
   );
 };
