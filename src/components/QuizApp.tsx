@@ -72,6 +72,7 @@ const QuizApp: React.FC = () => {
   return (
     <AccessibilityProvider>
       <div className="min-h-screen bg-quiz-background py-8 px-4 a11y-adjusted">
+        <a href="#main-content" className="skip-to-content">Skip to main content</a>
         <AccessibilityMenu />
         
         {/* Timer (visible during questions) */}
@@ -82,26 +83,26 @@ const QuizApp: React.FC = () => {
         )}
         
         {/* Quiz Content */}
-        {quizState === 'start' && <StartScreen onStart={handleStart} />}
-        
-        {quizState === 'question' && questions.length > 0 && (
-          <QuizQuestion
-            question={questions[currentQuestionIndex]}
-            currentNumber={currentQuestionIndex + 1}
-            totalQuestions={questions.length}
-            onAnswer={handleAnswer}
-          />
-        )}
-        
-        {quizState === 'feedback' && questions.length > 0 && selectedOption !== null && (
-          <>
+        <main id="main-content">
+          {quizState === 'start' && <StartScreen onStart={handleStart} />}
+          
+          {quizState === 'question' && questions.length > 0 && (
             <QuizQuestion
               question={questions[currentQuestionIndex]}
               currentNumber={currentQuestionIndex + 1}
               totalQuestions={questions.length}
-              onAnswer={() => {}}
+              onAnswer={handleAnswer}
             />
-            <div className="max-w-3xl mx-auto mt-4">
+          )}
+          
+          {quizState === 'feedback' && questions.length > 0 && selectedOption !== null && (
+            <div className="max-w-3xl mx-auto">
+              <QuizQuestion
+                question={questions[currentQuestionIndex]}
+                currentNumber={currentQuestionIndex + 1}
+                totalQuestions={questions.length}
+                onAnswer={() => {}}
+              />
               <FeedbackPanel
                 question={questions[currentQuestionIndex]}
                 selectedOption={selectedOption}
@@ -109,12 +110,12 @@ const QuizApp: React.FC = () => {
                 onNext={handleNext}
               />
             </div>
-          </>
-        )}
-        
-        {quizState === 'results' && results && (
-          <ResultsPage results={results} onRestart={handleRestart} />
-        )}
+          )}
+          
+          {quizState === 'results' && results && (
+            <ResultsPage results={results} onRestart={handleRestart} />
+          )}
+        </main>
       </div>
     </AccessibilityProvider>
   );
