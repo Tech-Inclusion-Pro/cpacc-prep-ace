@@ -19,7 +19,7 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
 }) => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [confirmed, setConfirmed] = useState(false);
-  const { verticalPosition, horizontalAlignment, fontColor } = useAccessibility();
+  const { verticalPosition, horizontalAlignment, fontColor, backgroundColor, fontSize } = useAccessibility();
 
   const handleOptionClick = (index: number) => {
     if (!confirmed) {
@@ -44,12 +44,19 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
     return className;
   };
 
-  // Get the border color based on the user's font color choice
-  const getBorderStyle = (index: number) => {
+  // Get the border color and background color based on the user's choices
+  const getOptionStyle = (index: number) => {
+    const styles: React.CSSProperties = {
+      backgroundColor: `var(--bg-color)`, // Use the user's selected background color
+      fontSize: fontSize === 'large' ? '1.125rem' : fontSize === 'x-large' ? '1.25rem' : '1rem',
+    };
+    
     if (selectedOption === index) {
-      return { borderColor: `var(--text-color)`, borderWidth: '3px' };
+      styles.borderColor = `var(--text-color)`;
+      styles.borderWidth = '3px';
     }
-    return {};
+    
+    return styles;
   };
 
   return (
@@ -80,7 +87,7 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
                   role="radio"
                   aria-checked={selectedOption === index}
                   tabIndex={0}
-                  style={getBorderStyle(index)}
+                  style={getOptionStyle(index)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       handleOptionClick(index);
@@ -93,7 +100,7 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
                     }`}>
                       {/* Removed checkmark SVG icon */}
                     </div>
-                    <span>{option}</span>
+                    <span style={{ fontSize: 'inherit' }}>{option}</span>
                   </div>
                 </div>
               ))}
