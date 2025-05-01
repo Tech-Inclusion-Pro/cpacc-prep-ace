@@ -5,6 +5,8 @@ import QuizQuestion from './QuizQuestion';
 import FeedbackPanel from './FeedbackPanel';
 import ResultsPage from './ResultsPage';
 import Timer from './Timer';
+import AccessibilityMenu from './AccessibilityMenu';
+import { AccessibilityProvider } from '@/context/AccessibilityContext';
 import { getQuizQuestions, calculateResults } from '@/data/quizData';
 import { QuizQuestion as QuizQuestionType, QuizState, QuizResult } from '@/types';
 
@@ -68,49 +70,53 @@ const QuizApp: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-quiz-background py-8 px-4">
-      {/* Timer (visible during questions) */}
-      {(quizState === 'question' || quizState === 'feedback') && (
-        <div className="max-w-3xl mx-auto flex justify-end mb-2">
-          <Timer isRunning={isTimerRunning} onTick={handleTick} />
-        </div>
-      )}
-      
-      {/* Quiz Content */}
-      {quizState === 'start' && <StartScreen onStart={handleStart} />}
-      
-      {quizState === 'question' && questions.length > 0 && (
-        <QuizQuestion
-          question={questions[currentQuestionIndex]}
-          currentNumber={currentQuestionIndex + 1}
-          totalQuestions={questions.length}
-          onAnswer={handleAnswer}
-        />
-      )}
-      
-      {quizState === 'feedback' && questions.length > 0 && selectedOption !== null && (
-        <>
+    <AccessibilityProvider>
+      <div className="min-h-screen bg-quiz-background py-8 px-4 a11y-adjusted">
+        <AccessibilityMenu />
+        
+        {/* Timer (visible during questions) */}
+        {(quizState === 'question' || quizState === 'feedback') && (
+          <div className="max-w-3xl mx-auto flex justify-end mb-2">
+            <Timer isRunning={isTimerRunning} onTick={handleTick} />
+          </div>
+        )}
+        
+        {/* Quiz Content */}
+        {quizState === 'start' && <StartScreen onStart={handleStart} />}
+        
+        {quizState === 'question' && questions.length > 0 && (
           <QuizQuestion
             question={questions[currentQuestionIndex]}
             currentNumber={currentQuestionIndex + 1}
             totalQuestions={questions.length}
-            onAnswer={() => {}}
+            onAnswer={handleAnswer}
           />
-          <div className="max-w-3xl mx-auto mt-4">
-            <FeedbackPanel
+        )}
+        
+        {quizState === 'feedback' && questions.length > 0 && selectedOption !== null && (
+          <>
+            <QuizQuestion
               question={questions[currentQuestionIndex]}
-              selectedOption={selectedOption}
-              isCorrect={answers[answers.length - 1]?.isCorrect}
-              onNext={handleNext}
+              currentNumber={currentQuestionIndex + 1}
+              totalQuestions={questions.length}
+              onAnswer={() => {}}
             />
-          </div>
-        </>
-      )}
-      
-      {quizState === 'results' && results && (
-        <ResultsPage results={results} onRestart={handleRestart} />
-      )}
-    </div>
+            <div className="max-w-3xl mx-auto mt-4">
+              <FeedbackPanel
+                question={questions[currentQuestionIndex]}
+                selectedOption={selectedOption}
+                isCorrect={answers[answers.length - 1]?.isCorrect}
+                onNext={handleNext}
+              />
+            </div>
+          </>
+        )}
+        
+        {quizState === 'results' && results && (
+          <ResultsPage results={results} onRestart={handleRestart} />
+        )}
+      </div>
+    </AccessibilityProvider>
   );
 };
 
