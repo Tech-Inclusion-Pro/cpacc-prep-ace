@@ -19,7 +19,7 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
 }) => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [confirmed, setConfirmed] = useState(false);
-  const { verticalPosition, horizontalAlignment } = useAccessibility();
+  const { verticalPosition, horizontalAlignment, fontColor } = useAccessibility();
 
   const handleOptionClick = (index: number) => {
     if (!confirmed) {
@@ -38,10 +38,18 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
     let className = "quiz-option";
     
     if (selectedOption === index) {
-      className += " selected";
+      className += " selected custom-border";
     }
     
     return className;
+  };
+
+  // Get the border color based on the user's font color choice
+  const getBorderStyle = (index: number) => {
+    if (selectedOption === index) {
+      return { borderColor: `var(--text-color)`, borderWidth: '3px' };
+    }
+    return {};
   };
 
   return (
@@ -49,10 +57,14 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
       <div className="quiz-position-container" data-vertical={verticalPosition}>
         <div className="quiz-alignment-container" style={{ textAlign: horizontalAlignment as any }}>
           <div className="mb-6">
-            <div className="flex justify-between items-center mb-2">
+            <div className="flex justify-between items-center mb-8">
               <span className="text-sm text-gray-500">
                 Question {currentNumber} of {totalQuestions}
               </span>
+              
+              {/* Added substantial spacing here */}
+              <div className="py-6"></div>
+              
               <span className="text-sm px-3 py-1 bg-gray-100 rounded-full text-gray-700">
                 {question.category}
               </span>
@@ -68,6 +80,7 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
                   role="radio"
                   aria-checked={selectedOption === index}
                   tabIndex={0}
+                  style={getBorderStyle(index)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       handleOptionClick(index);
@@ -76,20 +89,9 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
                 >
                   <div className="flex items-center">
                     <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center mr-3 ${
-                      selectedOption === index ? 'border-quiz-primary bg-quiz-primary text-white' : 'border-gray-300'
+                      selectedOption === index ? 'border-quiz-primary bg-quiz-primary' : 'border-gray-300'
                     }`}>
-                      {selectedOption === index && (
-                        <svg 
-                          xmlns="http://www.w3.org/2000/svg" 
-                          className="h-4 w-4" 
-                          fill="none" 
-                          viewBox="0 0 24 24" 
-                          stroke="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      )}
+                      {/* Removed checkmark SVG icon */}
                     </div>
                     <span>{option}</span>
                   </div>

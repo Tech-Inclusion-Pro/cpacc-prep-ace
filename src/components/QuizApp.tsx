@@ -6,7 +6,6 @@ import FeedbackPanel from './FeedbackPanel';
 import ResultsPage from './ResultsPage';
 import Timer from './Timer';
 import AccessibilityMenu from './AccessibilityMenu';
-import { AccessibilityProvider } from '@/context/AccessibilityContext';
 import { getQuizQuestions, calculateResults } from '@/data/quizData';
 import { QuizQuestion as QuizQuestionType, QuizState, QuizResult } from '@/types';
 
@@ -70,54 +69,52 @@ const QuizApp: React.FC = () => {
   };
 
   return (
-    <AccessibilityProvider>
-      <div className="min-h-screen bg-quiz-background py-8 px-4 a11y-adjusted">
-        <a href="#main-content" className="skip-to-content">Skip to main content</a>
-        <AccessibilityMenu />
+    <div className="min-h-screen bg-quiz-background py-8 px-4 a11y-adjusted">
+      <a href="#main-content" className="skip-to-content">Skip to main content</a>
+      <AccessibilityMenu />
+      
+      {/* Timer (visible during questions) */}
+      {(quizState === 'question' || quizState === 'feedback') && (
+        <div className="max-w-3xl mx-auto flex justify-end mb-2">
+          <Timer isRunning={isTimerRunning} onTick={handleTick} />
+        </div>
+      )}
+      
+      {/* Quiz Content */}
+      <main id="main-content">
+        {quizState === 'start' && <StartScreen onStart={handleStart} />}
         
-        {/* Timer (visible during questions) */}
-        {(quizState === 'question' || quizState === 'feedback') && (
-          <div className="max-w-3xl mx-auto flex justify-end mb-2">
-            <Timer isRunning={isTimerRunning} onTick={handleTick} />
-          </div>
+        {quizState === 'question' && questions.length > 0 && (
+          <QuizQuestion
+            question={questions[currentQuestionIndex]}
+            currentNumber={currentQuestionIndex + 1}
+            totalQuestions={questions.length}
+            onAnswer={handleAnswer}
+          />
         )}
         
-        {/* Quiz Content */}
-        <main id="main-content">
-          {quizState === 'start' && <StartScreen onStart={handleStart} />}
-          
-          {quizState === 'question' && questions.length > 0 && (
+        {quizState === 'feedback' && questions.length > 0 && selectedOption !== null && (
+          <div className="max-w-3xl mx-auto">
             <QuizQuestion
               question={questions[currentQuestionIndex]}
               currentNumber={currentQuestionIndex + 1}
               totalQuestions={questions.length}
-              onAnswer={handleAnswer}
+              onAnswer={() => {}}
             />
-          )}
-          
-          {quizState === 'feedback' && questions.length > 0 && selectedOption !== null && (
-            <div className="max-w-3xl mx-auto">
-              <QuizQuestion
-                question={questions[currentQuestionIndex]}
-                currentNumber={currentQuestionIndex + 1}
-                totalQuestions={questions.length}
-                onAnswer={() => {}}
-              />
-              <FeedbackPanel
-                question={questions[currentQuestionIndex]}
-                selectedOption={selectedOption}
-                isCorrect={answers[answers.length - 1]?.isCorrect}
-                onNext={handleNext}
-              />
-            </div>
-          )}
-          
-          {quizState === 'results' && results && (
-            <ResultsPage results={results} onRestart={handleRestart} />
-          )}
-        </main>
-      </div>
-    </AccessibilityProvider>
+            <FeedbackPanel
+              question={questions[currentQuestionIndex]}
+              selectedOption={selectedOption}
+              isCorrect={answers[answers.length - 1]?.isCorrect}
+              onNext={handleNext}
+            />
+          </div>
+        )}
+        
+        {quizState === 'results' && results && (
+          <ResultsPage results={results} onRestart={handleRestart} />
+        )}
+      </main>
+    </div>
   );
 };
 

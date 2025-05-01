@@ -141,9 +141,17 @@
   background-color: #f7fafc;
 }
 
+/* Updated selected style to use a border that matches the font color */
 .quiz-option.selected {
-  border-color: var(--border-color);
+  border-color: var(--text-color);
+  border-width: 3px;
   background-color: #f7fafc;
+}
+
+/* Custom border for selected option */
+.quiz-option.custom-border {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--text-color);
 }
 
 /* Feedback styling */
@@ -192,4 +200,13 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Additional spacing for question metadata */
+.question-metadata {
+  margin-bottom: 2rem;
+}
+
+.question-metadata-category {
+  margin-top: 1.5rem;
 }
