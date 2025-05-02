@@ -47,7 +47,7 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
   // Get the border color and background color based on the user's choices
   const getOptionStyle = (index: number) => {
     const styles: React.CSSProperties = {
-      backgroundColor: `var(--bg-color)`, // Use the user's selected background color
+      backgroundColor: `var(--bg-color)`, // Use the user's selected background color for each option
       fontSize: fontSize === 'large' ? '1.125rem' : fontSize === 'x-large' ? '1.25rem' : '1rem',
     };
     
@@ -76,7 +76,7 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
                 {question.category}
               </span>
             </div>
-            <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-6">{question.question}</h2>
+            <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-6" style={{ fontSize: fontSize === 'large' ? '1.5rem' : fontSize === 'x-large' ? '1.75rem' : '1.25rem' }}>{question.question}</h2>
             
             <div className="space-y-3">
               {question.options.map((option, index) => (

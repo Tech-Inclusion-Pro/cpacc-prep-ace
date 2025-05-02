@@ -23,7 +23,7 @@ const AccessibilityMenu: React.FC = () => {
             <Accessibility className="h-5 w-5" aria-hidden="true" />
           </Button>
         </SheetTrigger>
-        <SheetContent side="bottom" className="h-[90%] sm:h-[90%] bg-white">
+        <SheetContent side="right" className="w-full sm:w-[400px] md:w-[600px] overflow-y-auto h-full">
           <AccessibilityPanel />
         </SheetContent>
       </Sheet>
