@@ -23,7 +23,7 @@ const AccessibilityMenu: React.FC = () => {
             <Accessibility className="h-5 w-5" aria-hidden="true" />
           </Button>
         </DialogTrigger>
-        <DialogContent className="w-full max-w-full h-full max-h-full p-0 overflow-y-auto" aria-label="Accessibility Settings">
+        <DialogContent className="w-full max-w-full h-full max-h-full p-0" aria-label="Accessibility Settings">
           <AccessibilityPanel />
         </DialogContent>
       </Dialog>
