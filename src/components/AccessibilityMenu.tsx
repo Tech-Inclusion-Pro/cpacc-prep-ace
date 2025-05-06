@@ -3,17 +3,17 @@ import React from 'react';
 import { Accessibility } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { 
-  Sheet,
-  SheetContent,
-  SheetTrigger
-} from "@/components/ui/sheet";
+  Dialog,
+  DialogContent,
+  DialogTrigger
+} from "@/components/ui/dialog";
 import AccessibilityPanel from './AccessibilityPanel';
 
 const AccessibilityMenu: React.FC = () => {
   return (
     <div className="fixed top-4 right-4 z-50">
-      <Sheet>
-        <SheetTrigger asChild>
+      <Dialog>
+        <DialogTrigger asChild>
           <Button
             variant="outline"
             size="icon"
@@ -22,11 +22,11 @@ const AccessibilityMenu: React.FC = () => {
           >
             <Accessibility className="h-5 w-5" aria-hidden="true" />
           </Button>
-        </SheetTrigger>
-        <SheetContent side="right" className="w-full sm:w-[400px] md:w-[600px] overflow-y-auto h-full">
+        </DialogTrigger>
+        <DialogContent className="w-full max-w-full h-full max-h-full p-0 overflow-y-auto" aria-label="Accessibility Settings">
           <AccessibilityPanel />
-        </SheetContent>
-      </Sheet>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

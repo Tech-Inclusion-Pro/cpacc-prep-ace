@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useAccessibility } from '@/context/AccessibilityContext';
@@ -6,7 +5,7 @@ import {
   ToggleGroup,
   ToggleGroupItem
 } from '@/components/ui/toggle-group';
-import { SheetClose } from '@/components/ui/sheet';
+import { DialogClose } from '@/components/ui/dialog';
 
 const AccessibilityPanel: React.FC = () => {
   const {
@@ -23,10 +22,10 @@ const AccessibilityPanel: React.FC = () => {
   } = useAccessibility();
 
   return (
-    <div className="p-4">
+    <div className="p-8 h-full overflow-y-auto" role="dialog" aria-modal="true">
       <h1 className="text-3xl font-bold mb-8 text-center" id="accessibility-heading">Accessibility Settings</h1>
       
-      <div className="space-y-8">
+      <div className="space-y-8 max-w-3xl mx-auto">
         <div className="space-y-4">
           <h2 className="text-xl font-medium" id="font-size-heading">Font Size</h2>
           <ToggleGroup 
@@ -211,15 +210,15 @@ const AccessibilityPanel: React.FC = () => {
         </div>
       </div>
       
-      <div className="mt-12 text-center">
-        <SheetClose asChild>
+      <div className="mt-12 text-center pb-8">
+        <DialogClose asChild>
           <Button 
             className="quiz-button-primary"
             size="lg"
           >
             Return to Quiz
           </Button>
-        </SheetClose>
+        </DialogClose>
       </div>
     </div>
   );
