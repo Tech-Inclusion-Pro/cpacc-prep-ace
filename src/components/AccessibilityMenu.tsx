@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button';
 import { 
   Dialog,
   DialogContent,
-  DialogTrigger
+  DialogTrigger,
+  DialogTitle
 } from "@/components/ui/dialog";
 import AccessibilityPanel from './AccessibilityPanel';
 
@@ -24,6 +25,7 @@ const AccessibilityMenu: React.FC = () => {
           </Button>
         </DialogTrigger>
         <DialogContent className="w-full max-w-full h-full max-h-full p-0" aria-label="Accessibility Settings">
+          <DialogTitle className="sr-only">Accessibility Settings</DialogTitle>
           <AccessibilityPanel />
         </DialogContent>
       </Dialog>
