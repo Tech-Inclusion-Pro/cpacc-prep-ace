@@ -1,73 +1,47 @@
-# Welcome to your Lovable project
+# Welcome to the CPACC Practice Exam Web Application!
 
-## Project info
+This project is a web-based practice quiz designed to help learners prepare for the IAAP Certified Professional in Accessibility Core Competencies (CPACC) exam. It was developed using Lovable.dev’s Vibe Coding interface, which allows for building functional, beautiful apps using prompt-based logic. I do, however, have coding experienc ein HTM, Java, and Python so I tried my hand at how this platform created programs base don input. This is far fomr perfect but it presents and intersting use case for teaching methodlogy being able to create accessible quizzes on the fly for learners. 
 
-**URL**: https://lovable.dev/projects/9d0bf7fc-50ca-4eb4-a635-4bd8e9034bed
+The quiz is built to reflect the IAAP CPACC Body of Knowledge and emphasizes accessibility, personalization, and responsive design. Each time the quiz is taken, 20 random questions are selected from a pool of 100 items, with balanced representation across three key CPACC content areas.
 
-## How can I edit this code?
 
-There are several ways of editing your application.
+## Key Features
+- 20-question randomized quiz per session
+- Three CPACC domains covered evenly:
+    * Disabilities, Challenges, and Assistive Technologies
+    * Accessibility and Universal Design
+    * Standards, Laws, and Management Strategies
 
-**Use Lovable**
+## Accessibility customization panel with:
+- Font size adjustments
+- Font and background color choices
+- Question positioning (top/middle/bottom, left/center/right)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9d0bf7fc-50ca-4eb4-a635-4bd8e9034bed) and start prompting.
+## Quiz Interactive Features
+- Stopwatch timer (pauses during feedback viewing)
+- Immediate feedback after each question
+- Visual and screen reader-friendly results report
+- Printable/saveable results with performance by domain
 
-Changes made via Lovable will be committed automatically to this repo.
+## Development Approach
+This project was built using a "Vibe Coding" strategy with Lovable.dev prompts. 
 
-**Use your preferred IDE**
+Each feature and behavior was developed through:
+- Modular prompt-based design
+- Iterative updates based on usability and accessibility testing
+- Focus on WCAG 2.1 AA compliance
+- Leveraging ARIA roles for screen reader compatibility
+- Personal editing to preserve clean UI/UX styling while honoring functionality for diverse user needs
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Feedback Welcome
+This project is still evolving. I welcome feedback, bug reports, and suggestions—especially those that improve:
+- User experience across assistive technologies
+- Visual clarity and interface customization
+- Question formatting or logic alignment with the CPACC Body of Knowledge
+- Feel free to open an issue or start a discussion!
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/9d0bf7fc-50ca-4eb4-a635-4bd8e9034bed) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Credits
+Developed by Rocco Catrone of Tech Inclusion Pro LLC using:
+- Lovable.dev
+- IAAP CPACC Body of Knowledge (2020)
+- Community input and accessibility research
