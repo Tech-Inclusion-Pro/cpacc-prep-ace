@@ -19,7 +19,7 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
 }) => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [confirmed, setConfirmed] = useState(false);
-  const { backgroundColor } = useAccessibility();
+  const { backgroundColor, verticalPosition, horizontalAlignment } = useAccessibility();
 
   const handleOptionClick = (index: number) => {
     if (!confirmed) {
@@ -60,7 +60,7 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
 
   return (
     <div className="quiz-container animate-fade-in">
-      <div className="quiz-position-container">
+      <div className="quiz-position-container" data-vertical={verticalPosition || 'center'}>
         <div className="quiz-alignment-container">
           <div className="mb-6">
             <div className="flex justify-between items-center mb-8">

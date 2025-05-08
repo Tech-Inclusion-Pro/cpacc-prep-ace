@@ -42,13 +42,13 @@ const AccessibilityPage: React.FC = () => {
               aria-labelledby="font-size-heading"
               className="justify-start"
             >
-              <ToggleGroupItem value="default" aria-label="Default font size">
+              <ToggleGroupItem value="small" aria-label="Small font size">
                 Standard
               </ToggleGroupItem>
-              <ToggleGroupItem value="large" aria-label="Large font size">
+              <ToggleGroupItem value="medium" aria-label="Medium font size">
                 Large
               </ToggleGroupItem>
-              <ToggleGroupItem value="x-large" aria-label="Extra large font size">
+              <ToggleGroupItem value="large" aria-label="Large font size">
                 Extra Large
               </ToggleGroupItem>
             </ToggleGroup>
@@ -80,44 +80,28 @@ const AccessibilityPage: React.FC = () => {
                 White
               </ToggleGroupItem>
               <ToggleGroupItem 
-                value="yellow" 
-                aria-label="Yellow text color"
+                value="darkblue" 
+                aria-label="Dark blue text color"
                 className="relative"
               >
-                <span className="inline-block w-4 h-4 bg-[#FEF7CD] rounded-full mr-2"></span>
-                Yellow
+                <span className="inline-block w-4 h-4 bg-[#0EA5E9] rounded-full mr-2"></span>
+                Dark Blue
               </ToggleGroupItem>
               <ToggleGroupItem 
-                value="red" 
-                aria-label="Red text color"
+                value="darkgreen" 
+                aria-label="Dark green text color"
                 className="relative"
               >
-                <span className="inline-block w-4 h-4 bg-red-500 rounded-full mr-2"></span>
-                Red
-              </ToggleGroupItem>
-              <ToggleGroupItem 
-                value="blue" 
-                aria-label="Blue text color"
-                className="relative"
-              >
-                <span className="inline-block w-4 h-4 bg-blue-500 rounded-full mr-2"></span>
-                Blue
-              </ToggleGroupItem>
-              <ToggleGroupItem 
-                value="green" 
-                aria-label="Green text color"
-                className="relative"
-              >
-                <span className="inline-block w-4 h-4 bg-green-500 rounded-full mr-2"></span>
+                <span className="inline-block w-4 h-4 bg-[#166534] rounded-full mr-2"></span>
                 Green
               </ToggleGroupItem>
               <ToggleGroupItem 
-                value="gold" 
-                aria-label="Gold text color"
+                value="deepred" 
+                aria-label="Deep red text color"
                 className="relative"
               >
-                <span className="inline-block w-4 h-4 bg-yellow-400 rounded-full mr-2"></span>
-                Gold
+                <span className="inline-block w-4 h-4 bg-[#ea384c] rounded-full mr-2"></span>
+                Red
               </ToggleGroupItem>
             </ToggleGroup>
           </div>
@@ -140,7 +124,23 @@ const AccessibilityPage: React.FC = () => {
                 White
               </ToggleGroupItem>
               <ToggleGroupItem 
-                value="dark-gray" 
+                value="lightgray" 
+                aria-label="Light gray background color"
+                className="relative"
+              >
+                <span className="inline-block w-4 h-4 bg-[#F1F1F1] rounded-full mr-2"></span>
+                Light Gray
+              </ToggleGroupItem>
+              <ToggleGroupItem 
+                value="beige" 
+                aria-label="Beige background color"
+                className="relative"
+              >
+                <span className="inline-block w-4 h-4 bg-[#FFF3E0] rounded-full mr-2"></span>
+                Beige
+              </ToggleGroupItem>
+              <ToggleGroupItem 
+                value="darkgray" 
                 aria-label="Dark gray background color"
                 className="relative"
               >
@@ -148,28 +148,12 @@ const AccessibilityPage: React.FC = () => {
                 Dark Gray
               </ToggleGroupItem>
               <ToggleGroupItem 
-                value="pale-blue" 
-                aria-label="Pale blue background color"
+                value="navyblue" 
+                aria-label="Navy blue background color"
                 className="relative"
               >
-                <span className="inline-block w-4 h-4 bg-[#D3E4FD] rounded-full mr-2"></span>
-                Pale Blue
-              </ToggleGroupItem>
-              <ToggleGroupItem 
-                value="black" 
-                aria-label="Black background color"
-                className="relative"
-              >
-                <span className="inline-block w-4 h-4 bg-black rounded-full mr-2"></span>
-                Black
-              </ToggleGroupItem>
-              <ToggleGroupItem 
-                value="light-grey" 
-                aria-label="Light grey background color"
-                className="relative"
-              >
-                <span className="inline-block w-4 h-4 bg-[#F5F5F5] rounded-full mr-2"></span>
-                Light Grey
+                <span className="inline-block w-4 h-4 bg-[#1A1F2C] rounded-full mr-2"></span>
+                Navy Blue
               </ToggleGroupItem>
             </ToggleGroup>
           </div>

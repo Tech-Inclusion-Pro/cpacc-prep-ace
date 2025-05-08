@@ -5,16 +5,22 @@ type FontSize = 'small' | 'medium' | 'large';
 type FontColor = 'black' | 'darkblue' | 'white' | 'darkgreen' | 'deepred';
 type TextAlignment = 'left' | 'center' | 'right';
 type BackgroundColor = 'white' | 'lightgray' | 'beige' | 'darkgray' | 'navyblue';
+type VerticalPosition = 'top' | 'center' | 'bottom';
+type HorizontalAlignment = 'left' | 'center' | 'right';
 
 interface AccessibilityContextType {
   fontSize: FontSize;
   fontColor: FontColor;
   textAlignment: TextAlignment;
   backgroundColor: BackgroundColor;
+  verticalPosition: VerticalPosition;
+  horizontalAlignment: HorizontalAlignment;
   setFontSize: (size: FontSize) => void;
   setFontColor: (color: FontColor) => void;
   setTextAlignment: (alignment: TextAlignment) => void;
   setBackgroundColor: (color: BackgroundColor) => void;
+  setVerticalPosition: (position: VerticalPosition) => void;
+  setHorizontalAlignment: (alignment: HorizontalAlignment) => void;
 }
 
 const AccessibilityContext = createContext<AccessibilityContextType>({
@@ -22,10 +28,14 @@ const AccessibilityContext = createContext<AccessibilityContextType>({
   fontColor: 'black',
   textAlignment: 'center',
   backgroundColor: 'white',
+  verticalPosition: 'center',
+  horizontalAlignment: 'center',
   setFontSize: () => {},
   setFontColor: () => {},
   setTextAlignment: () => {},
   setBackgroundColor: () => {},
+  setVerticalPosition: () => {},
+  setHorizontalAlignment: () => {},
 });
 
 export const useAccessibility = () => useContext(AccessibilityContext);
@@ -35,6 +45,8 @@ export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({
   const [fontColor, setFontColor] = useState<FontColor>('black');
   const [textAlignment, setTextAlignment] = useState<TextAlignment>('center');
   const [backgroundColor, setBackgroundColor] = useState<BackgroundColor>('white');
+  const [verticalPosition, setVerticalPosition] = useState<VerticalPosition>('center');
+  const [horizontalAlignment, setHorizontalAlignment] = useState<HorizontalAlignment>('center');
 
   // Apply styles based on accessibility settings
   useEffect(() => {
@@ -105,10 +117,14 @@ export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({
         fontColor,
         textAlignment,
         backgroundColor,
+        verticalPosition,
+        horizontalAlignment,
         setFontSize,
         setFontColor,
         setTextAlignment,
         setBackgroundColor,
+        setVerticalPosition,
+        setHorizontalAlignment,
       }}
     >
       {children}
