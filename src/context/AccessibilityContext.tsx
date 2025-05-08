@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 type FontSize = 'small' | 'medium' | 'large';
 type FontColor = 'black' | 'darkblue' | 'white' | 'darkgreen' | 'deepred';
 type TextAlignment = 'left' | 'center' | 'right';
-type BackgroundColor = 'white' | 'lightgray' | 'beige' | 'darkgray' | 'navyblue';
+type BackgroundColor = 'white' | 'lightgray' | 'beige' | 'black';
 type VerticalPosition = 'top' | 'center' | 'bottom';
 type HorizontalAlignment = 'left' | 'center' | 'right';
 
@@ -91,11 +91,8 @@ export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({
       case 'beige':
         bgColor = '#FFF3E0';
         break;
-      case 'darkgray':
-        bgColor = '#333333';
-        break;
-      case 'navyblue':
-        bgColor = '#1A1F2C';
+      case 'black':
+        bgColor = '#000000';
         break;
       default:
         bgColor = '#FFFFFF';
@@ -106,7 +103,7 @@ export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({
     document.documentElement.style.setProperty('--text-alignment', textAlignment);
 
     // Add appropriate classes to the body
-    document.body.classList.toggle('dark-bg', ['darkgray', 'navyblue'].includes(backgroundColor));
+    document.body.classList.toggle('dark-bg', backgroundColor === 'black');
 
   }, [fontSize, fontColor, textAlignment, backgroundColor]);
 

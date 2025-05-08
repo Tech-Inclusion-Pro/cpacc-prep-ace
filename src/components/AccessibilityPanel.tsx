@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useAccessibility } from '@/context/AccessibilityContext';
@@ -136,20 +135,12 @@ const AccessibilityPanel: React.FC = () => {
                 Beige
               </ToggleGroupItem>
               <ToggleGroupItem 
-                value="darkgray" 
-                aria-label="Dark gray background color"
+                value="black" 
+                aria-label="Black background color"
                 className="relative"
               >
-                <span className="inline-block w-4 h-4 bg-[#333333] rounded-full mr-2"></span>
-                Dark Gray
-              </ToggleGroupItem>
-              <ToggleGroupItem 
-                value="navyblue" 
-                aria-label="Navy blue background color"
-                className="relative"
-              >
-                <span className="inline-block w-4 h-4 bg-[#1A1F2C] rounded-full mr-2"></span>
-                Navy Blue
+                <span className="inline-block w-4 h-4 bg-black rounded-full mr-2"></span>
+                Black
               </ToggleGroupItem>
             </ToggleGroup>
           </div>

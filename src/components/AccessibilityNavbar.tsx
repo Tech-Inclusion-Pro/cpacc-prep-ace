@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useAccessibility } from '@/context/AccessibilityContext';
 import { Button } from '@/components/ui/button';
@@ -214,20 +213,12 @@ const AccessibilityNavbar: React.FC = () => {
                 Beige
               </Button>
               <Button 
-                variant={backgroundColor === 'darkgray' ? 'default' : 'outline'} 
+                variant={backgroundColor === 'black' ? 'default' : 'outline'} 
                 className="justify-start"
-                onClick={() => setBackgroundColor('darkgray')}
+                onClick={() => setBackgroundColor('black')}
               >
-                <div className="w-4 h-4 bg-[#333333] rounded-full mr-2"></div>
-                Dark Gray
-              </Button>
-              <Button 
-                variant={backgroundColor === 'navyblue' ? 'default' : 'outline'} 
-                className="justify-start"
-                onClick={() => setBackgroundColor('navyblue')}
-              >
-                <div className="w-4 h-4 bg-[#1A1F2C] rounded-full mr-2"></div>
-                Navy Blue
+                <div className="w-4 h-4 bg-black rounded-full mr-2"></div>
+                Black
               </Button>
             </div>
           </PopoverContent>
