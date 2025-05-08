@@ -7,7 +7,6 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AccessibilityProvider } from "./context/AccessibilityContext";
-import Footer from "./components/Footer";
 
 const queryClient = new QueryClient();
 
@@ -26,7 +25,6 @@ const App = () => (
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </div>
-            <Footer />
           </div>
         </BrowserRouter>
       </TooltipProvider>
