@@ -5,7 +5,7 @@ import QuizQuestion from './QuizQuestion';
 import FeedbackPanel from './FeedbackPanel';
 import ResultsPage from './ResultsPage';
 import Timer from './Timer';
-import AccessibilityMenu from './AccessibilityMenu';
+import Footer from './Footer';
 import { getQuizQuestions, calculateResults } from '@/data/quizData';
 import { QuizQuestion as QuizQuestionType, QuizState, QuizResult } from '@/types';
 
@@ -69,9 +69,8 @@ const QuizApp: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-quiz-background py-8 px-4 a11y-adjusted">
+    <div className="min-h-screen bg-quiz-background py-8 px-4 a11y-adjusted flex flex-col">
       <a href="#main-content" className="skip-to-content">Skip to main content</a>
-      <AccessibilityMenu />
       
       {/* Timer (visible during questions) */}
       {(quizState === 'question' || quizState === 'feedback') && (
@@ -81,7 +80,7 @@ const QuizApp: React.FC = () => {
       )}
       
       {/* Quiz Content */}
-      <main id="main-content">
+      <main id="main-content" className="flex-grow">
         {quizState === 'start' && <StartScreen onStart={handleStart} />}
         
         {quizState === 'question' && questions.length > 0 && (
@@ -114,6 +113,9 @@ const QuizApp: React.FC = () => {
           <ResultsPage results={results} onRestart={handleRestart} />
         )}
       </main>
+      
+      {/* Footer present on all screens */}
+      <Footer />
     </div>
   );
 };
