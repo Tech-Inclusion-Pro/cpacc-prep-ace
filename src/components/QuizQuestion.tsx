@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { QuizQuestion } from '@/types';
+import { useAccessibility } from '@/context/AccessibilityContext';
 
 interface QuizQuestionProps {
   question: QuizQuestion;
@@ -18,6 +19,7 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
 }) => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [confirmed, setConfirmed] = useState(false);
+  const { backgroundColor } = useAccessibility();
 
   const handleOptionClick = (index: number) => {
     if (!confirmed) {
@@ -43,7 +45,10 @@ const QuizQuestionComponent: React.FC<QuizQuestionProps> = ({
   };
 
   const getOptionStyle = (index: number) => {
-    const styles: React.CSSProperties = {};
+    const styles: React.CSSProperties = {
+      backgroundColor: 'var(--bg-color)',
+      color: 'var(--text-color)'
+    };
     
     if (selectedOption === index) {
       styles.borderColor = `var(--text-color)`;

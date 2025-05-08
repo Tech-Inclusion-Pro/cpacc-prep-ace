@@ -7,7 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AccessibilityProvider } from "./context/AccessibilityContext";
-import AccessibilityNavbar from "./components/AccessibilityNavbar";
+import Footer from "./components/Footer";
 
 const queryClient = new QueryClient();
 
@@ -19,7 +19,6 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <div className="flex flex-col min-h-screen">
-            <AccessibilityNavbar />
             <div className="flex-grow">
               <Routes>
                 <Route path="/" element={<Index />} />
@@ -27,6 +26,7 @@ const App = () => (
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </div>
+            <Footer />
           </div>
         </BrowserRouter>
       </TooltipProvider>

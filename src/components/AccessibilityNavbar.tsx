@@ -43,8 +43,8 @@ const AccessibilityNavbar: React.FC = () => {
   };
 
   return (
-    <nav className="border-b p-2 bg-background" aria-label="Accessibility options">
-      <div className="max-w-screen-xl mx-auto flex justify-end gap-2">
+    <nav className="p-2 bg-background" aria-label="Accessibility options">
+      <div className="max-w-screen-xl mx-auto flex justify-center gap-2 flex-wrap">
         {/* Font Size Button */}
         <Popover>
           <PopoverTrigger asChild>

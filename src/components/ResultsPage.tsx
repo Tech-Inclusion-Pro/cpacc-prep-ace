@@ -11,7 +11,7 @@ interface ResultsPageProps {
 }
 
 const ResultsPage: React.FC<ResultsPageProps> = ({ results, onRestart }) => {
-  const { verticalPosition, horizontalAlignment } = useAccessibility();
+  const { textAlignment } = useAccessibility();
   const { totalQuestions, correctAnswers, totalTime, date, categoryResults } = results;
   const percentage = (correctAnswers / totalQuestions) * 100;
   const recommendations = generateRecommendations(results);
@@ -50,8 +50,8 @@ const ResultsPage: React.FC<ResultsPageProps> = ({ results, onRestart }) => {
 
   return (
     <div className="quiz-container animate-fade-in print:shadow-none print:my-0">
-      <div className="quiz-position-container" data-vertical={verticalPosition}>
-        <div className="quiz-alignment-container" style={{ textAlign: horizontalAlignment as any }}>
+      <div className="quiz-position-container">
+        <div className="quiz-alignment-container" style={{ textAlign: textAlignment as any }}>
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-800 mb-4">Quiz Results</h1>
             <div className="h-1 w-20 bg-quiz-secondary mx-auto mb-2"></div>
