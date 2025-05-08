@@ -4,6 +4,8 @@ This project is a web-based practice quiz designed to help learners prepare for 
 
 The quiz is built to reflect the IAAP CPACC Body of Knowledge and emphasizes accessibility, personalization, and responsive design. Each time the quiz is taken, 20 random questions are selected from a pool of 100 items, with balanced representation across three key CPACC content areas.
 
+You can also test out the application for yourself here: https://cpacc-prep-ace.lovable.app/ 
+
 
 ## Key Features
 - 20-question randomized quiz per session
