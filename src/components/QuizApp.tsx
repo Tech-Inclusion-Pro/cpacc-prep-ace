@@ -69,7 +69,7 @@ const QuizApp: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-quiz-background py-8 px-4 a11y-adjusted flex flex-col">
+    <div className="min-h-screen py-8 px-4 flex flex-col">
       <a href="#main-content" className="skip-to-content">Skip to main content</a>
       
       {/* Timer (visible during questions) */}
@@ -80,7 +80,7 @@ const QuizApp: React.FC = () => {
       )}
       
       {/* Quiz Content */}
-      <main id="main-content" className="flex-grow">
+      <main id="main-content" className="flex-grow a11y-content">
         {quizState === 'start' && <StartScreen onStart={handleStart} />}
         
         {quizState === 'question' && questions.length > 0 && (

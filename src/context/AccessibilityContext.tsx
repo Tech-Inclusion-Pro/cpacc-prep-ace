@@ -1,110 +1,116 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-type FontSize = 'default' | 'large' | 'x-large';
-type ColorMode = 'light' | 'dark';
-type FontColor = 'black' | 'white' | 'yellow' | 'red' | 'blue' | 'green' | 'gold';
-type BackgroundColor = 'white' | 'dark-gray' | 'pale-blue' | 'black' | 'light-grey';
-type VerticalPosition = 'top' | 'center' | 'bottom';
-type HorizontalAlignment = 'left' | 'center' | 'right';
+type FontSize = 'small' | 'medium' | 'large';
+type FontColor = 'black' | 'darkblue' | 'white' | 'darkgreen' | 'deepred';
+type TextAlignment = 'left' | 'center' | 'right';
+type BackgroundColor = 'white' | 'lightgray' | 'beige' | 'darkgray' | 'navyblue';
 
 interface AccessibilityContextType {
   fontSize: FontSize;
-  colorMode: ColorMode;
   fontColor: FontColor;
+  textAlignment: TextAlignment;
   backgroundColor: BackgroundColor;
-  verticalPosition: VerticalPosition;
-  horizontalAlignment: HorizontalAlignment;
   setFontSize: (size: FontSize) => void;
-  setColorMode: (mode: ColorMode) => void;
   setFontColor: (color: FontColor) => void;
+  setTextAlignment: (alignment: TextAlignment) => void;
   setBackgroundColor: (color: BackgroundColor) => void;
-  setVerticalPosition: (position: VerticalPosition) => void;
-  setHorizontalAlignment: (alignment: HorizontalAlignment) => void;
 }
 
-const defaultAccessibilityContext: AccessibilityContextType = {
-  fontSize: 'default',
-  colorMode: 'light',
+const AccessibilityContext = createContext<AccessibilityContextType>({
+  fontSize: 'medium',
   fontColor: 'black',
+  textAlignment: 'center',
   backgroundColor: 'white',
-  verticalPosition: 'top',
-  horizontalAlignment: 'center',
   setFontSize: () => {},
-  setColorMode: () => {},
   setFontColor: () => {},
+  setTextAlignment: () => {},
   setBackgroundColor: () => {},
-  setVerticalPosition: () => {},
-  setHorizontalAlignment: () => {},
-};
-
-const AccessibilityContext = createContext<AccessibilityContextType>(defaultAccessibilityContext);
+});
 
 export const useAccessibility = () => useContext(AccessibilityContext);
 
 export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [fontSize, setFontSize] = useState<FontSize>('default');
-  const [colorMode, setColorMode] = useState<ColorMode>('light');
+  const [fontSize, setFontSize] = useState<FontSize>('medium');
   const [fontColor, setFontColor] = useState<FontColor>('black');
+  const [textAlignment, setTextAlignment] = useState<TextAlignment>('center');
   const [backgroundColor, setBackgroundColor] = useState<BackgroundColor>('white');
-  const [verticalPosition, setVerticalPosition] = useState<VerticalPosition>('top');
-  const [horizontalAlignment, setHorizontalAlignment] = useState<HorizontalAlignment>('center');
 
   // Apply styles based on accessibility settings
   useEffect(() => {
-    document.documentElement.style.setProperty('--font-size-multiplier', 
-      fontSize === 'default' ? '1' : fontSize === 'large' ? '1.25' : '1.5');
-    
-    document.documentElement.classList.toggle('dark-mode', colorMode === 'dark');
-    
-    // Set text color based on fontColor
-    let textColor = '';
+    // Apply font size
+    document.documentElement.style.setProperty(
+      '--font-size-multiplier',
+      fontSize === 'small' ? '0.875' : fontSize === 'medium' ? '1' : '1.25'
+    );
+
+    // Apply font color
+    let textColor;
     switch (fontColor) {
-      case 'black': textColor = '#000000'; break;
-      case 'white': textColor = '#FFFFFF'; break;
-      case 'yellow': textColor = '#FEF7CD'; break;
-      case 'red': textColor = '#e53e3e'; break;
-      case 'blue': textColor = '#3182ce'; break;
-      case 'green': textColor = '#38a169'; break;
-      case 'gold': textColor = '#ecc94b'; break;
+      case 'black':
+        textColor = '#000000';
+        break;
+      case 'darkblue':
+        textColor = '#0EA5E9';
+        break;
+      case 'white':
+        textColor = '#FFFFFF';
+        break;
+      case 'darkgreen':
+        textColor = '#166534';
+        break;
+      case 'deepred':
+        textColor = '#ea384c';
+        break;
+      default:
+        textColor = '#000000';
     }
     document.documentElement.style.setProperty('--text-color', textColor);
-    document.documentElement.style.setProperty('--border-color', textColor);
-    
-    // Set background color based on backgroundColor
-    let bgColor = '';
+
+    // Apply background color
+    let bgColor;
     switch (backgroundColor) {
-      case 'white': bgColor = '#FFFFFF'; break;
-      case 'dark-gray': bgColor = '#333333'; break;
-      case 'pale-blue': bgColor = '#D3E4FD'; break;
-      case 'black': bgColor = '#000000'; break;
-      case 'light-grey': bgColor = '#F5F5F5'; break;
+      case 'white':
+        bgColor = '#FFFFFF';
+        break;
+      case 'lightgray':
+        bgColor = '#F1F1F1';
+        break;
+      case 'beige':
+        bgColor = '#FFF3E0';
+        break;
+      case 'darkgray':
+        bgColor = '#333333';
+        break;
+      case 'navyblue':
+        bgColor = '#1A1F2C';
+        break;
+      default:
+        bgColor = '#FFFFFF';
     }
     document.documentElement.style.setProperty('--bg-color', bgColor);
-    
-    // Set vertical position
-    document.documentElement.style.setProperty('--vertical-position', verticalPosition);
-    
-    // Set horizontal alignment
-    document.documentElement.style.setProperty('--horizontal-alignment', horizontalAlignment);
-    
-  }, [fontSize, colorMode, fontColor, backgroundColor, verticalPosition, horizontalAlignment]);
+
+    // Apply text alignment
+    document.documentElement.style.setProperty('--text-alignment', textAlignment);
+
+    // Add appropriate classes to the body
+    document.body.classList.toggle('dark-bg', ['darkgray', 'navyblue'].includes(backgroundColor));
+
+  }, [fontSize, fontColor, textAlignment, backgroundColor]);
 
   return (
-    <AccessibilityContext.Provider value={{
-      fontSize,
-      colorMode,
-      fontColor,
-      backgroundColor,
-      verticalPosition,
-      horizontalAlignment,
-      setFontSize,
-      setColorMode,
-      setFontColor,
-      setBackgroundColor,
-      setVerticalPosition,
-      setHorizontalAlignment
-    }}>
+    <AccessibilityContext.Provider
+      value={{
+        fontSize,
+        fontColor,
+        textAlignment,
+        backgroundColor,
+        setFontSize,
+        setFontColor,
+        setTextAlignment,
+        setBackgroundColor,
+      }}
+    >
       {children}
     </AccessibilityContext.Provider>
   );
